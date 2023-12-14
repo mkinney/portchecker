@@ -9,7 +9,8 @@ import (
 	"time"
 )
 
-func parseCheck(line string, timeout int) {
+func parseCheck(line string, timeout int) int{
+	failures := 0
 	hostsAndPorts := strings.Split(line, " ")
 	//fmt.Println("hostsAndPorts:", hostsAndPorts)
 	allHosts := hostsAndPorts[0]
@@ -22,13 +23,14 @@ func parseCheck(line string, timeout int) {
 	for _, host := range hosts {
 		//fmt.Println("host:", host)
 		for _, port := range ports {
-			checkHostAndPort(host, port, timeout)
+			failures += checkHostAndPort(host, port, timeout)
 		}
 
 	}
+	return failures
 }
 
-func checkHostAndPort(host string, port string, timeout int) {
+func checkHostAndPort(host string, port string, timeout int) int {
 	failures := 0
 	//fmt.Println("check host:", host, " port:", port)
 	address := net.JoinHostPort(host, port)
@@ -48,12 +50,11 @@ func checkHostAndPort(host string, port string, timeout int) {
 		}
 
 	}
-	os.Exit(failures)
+	return failures
 }
 
 func main() {
 
-	rc := 0
 	checkPtr := flag.String("check", "", "Formatted list of hosts and ports to check ex: h1,h2 80,9000")
 	timeoutPtr := flag.Int("timeout", 3, "Timeout (in seconds); defaults to 3")
 	flag.Parse()
@@ -67,7 +68,6 @@ func main() {
 	//fmt.Println("check:", *checkPtr)
 	//fmt.Println("timeout:", *timeoutPtr)
 
-	parseCheck(*checkPtr, *timeoutPtr)
-
+	rc := parseCheck(*checkPtr, *timeoutPtr)
 	os.Exit(rc)
 }
