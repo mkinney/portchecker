@@ -1,5 +1,7 @@
 portchecker - check if hosts resolve and check it the port is open
 
+https://github.com/mkinney/portchecker/actions/workflows/build/badge.svg
+
 -timeout: number of seconds to try
 
 -check:
@@ -15,6 +17,11 @@ Development:
 - "go mod init" to initialize (creates go.mod)
 - "go build"
 - "./portchecker"
+
+Future:
+- refactor code
+- add tests
+- create releases for linux and windows
 
 Inspired by:
 - https://github.com/dddpaul/gonc
