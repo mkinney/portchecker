@@ -1,6 +1,6 @@
 portchecker - check if hosts resolve and check it the port is open
 
-![Build](https://github.com/mkinney/portchecker/actions/workflows/build/badge.svg)
+![Build](https://github.com/mkinney/portchecker/actions/workflows/build.yml/badge.svg)
 
 -timeout: number of seconds to try
 
