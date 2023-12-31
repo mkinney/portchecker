@@ -27,3 +27,8 @@ Future:
 Inspired by:
 - https://github.com/dddpaul/gonc
 - https://stackoverflow.com/a/59621864
+
+Could also use netcat:
+```
+  nc -z -n 127.0.0.1 1-5000
+```
